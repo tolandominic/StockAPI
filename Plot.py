@@ -1,5 +1,8 @@
-import plotly.express as px
+import plotly.graph_objects as go
 
+numbers = ["5", "10", "3", "10", "5", "8", "5", "5"]
 
-def line(x, y, title):
-    return px.line(x=x, y=y, title=title, markers=True)
+fig = go.Figure()
+fig.add_trace(go.Histogram(x=numbers, name="count", texttemplate="%{x}", textfont_size=20))
+
+fig.show()
