@@ -1,5 +1,6 @@
 import os
 from alpaca_trade_api.rest import REST
+from dash.exceptions import PreventUpdate
 
 
 class AlpacaApi:
@@ -10,5 +11,8 @@ class AlpacaApi:
         self.api = REST()
 
     def call(self, symbol, timeframe, start, end):
+        if symbol is None:
+            raise PreventUpdate
         return self.api.get_bars(symbol=symbol, timeframe=timeframe, start=start, end=end, adjustment='raw').df
+
 
